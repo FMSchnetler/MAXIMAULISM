@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+  MAXIMAULISM — PROTOTYPE 2 of 3: "FULL SCHIZO GLITCH"
+  Direction: maximal INFOWARS chaos. Blood-red alert, twin scrolling tickers,
+  RGB-split glitch title, strobing lightning eyes, rotated DANGER tape,
+  brutalist flashing menu. The loudest of the three.
+
+  Stand-in hero: Bohémond I of Antioch (Blondel, 1843, public domain).
+  >>> SWAP: replace assets/crusader-stand-in.jpg; retune --eyeL/--eyeR. <<<
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAXIMAULISM — Full Schizo Glitch</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{ --red:#e10600; --amber:#ffb400; --electric:#7df9ff;
+    --eyeL-x:44%; --eyeL-y:25%; --eyeR-x:52%; --eyeR-y:24%; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; overflow-x:hidden; color:#fff; background:#0a0000;
+    font-family:'Special Elite',monospace;
+    background-image:
+      radial-gradient(circle at 50% 20%, rgba(225,6,0,.35), transparent 60%),
+      repeating-linear-gradient(0deg, rgba(255,0,0,.05) 0 2px, transparent 2px 4px); }
+  body::after{ content:""; position:fixed; inset:0; z-index:60; pointer-events:none;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.35) 0 1px, transparent 1px 3px);
+    animation:roll 8s linear infinite; opacity:.5; }
+  @keyframes roll{ to{ background-position:0 100px; } }
+
+  /* tickers */
+  .ticker{ background:var(--red); color:#fff; font-family:'Archivo Black',sans-serif;
+    letter-spacing:.15em; white-space:nowrap; overflow:hidden; border-block:2px solid #000; }
+  .ticker span{ display:inline-block; padding-block:.35rem; animation:scroll 22s linear infinite; }
+  .ticker.rev span{ animation-direction:reverse; background:transparent; }
+  @keyframes scroll{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* glitch title */
+  .glitch{ font-family:'Anton',sans-serif; font-size:clamp(2.6rem,13vw,10rem); line-height:.85;
+    letter-spacing:.02em; position:relative; color:#fff; text-shadow:0 0 8px rgba(255,255,255,.4); }
+  .glitch::before,.glitch::after{ content:"MAXIMAULISM"; position:absolute; inset:0; }
+  .glitch::before{ color:var(--red); animation:g1 2.2s infinite steps(2); clip-path:inset(0 0 55% 0); }
+  .glitch::after{ color:var(--electric); animation:g2 1.8s infinite steps(2); clip-path:inset(55% 0 0 0); }
+  @keyframes g1{ 0%,100%{transform:translate(0)} 20%{transform:translate(-4px,-2px)} 40%{transform:translate(3px,1px)} }
+  @keyframes g2{ 0%,100%{transform:translate(0)} 25%{transform:translate(4px,2px)} 55%{transform:translate(-3px,-1px)} }
+
+  .tape{ background:repeating-linear-gradient(45deg,#000 0 18px,var(--amber) 18px 36px);
+    color:#000; font-family:'Archivo Black',sans-serif; }
+  .tape span{ background:var(--amber); padding:.15rem .6rem; }
+
+  .hero{ position:relative; width:min(72vw,360px); aspect-ratio:1275/1918; overflow:hidden;
+    border:3px solid #000; box-shadow:0 0 0 4px var(--red),0 0 60px rgba(225,6,0,.6);
+    animation:jitter 6s infinite; }
+  @keyframes jitter{ 0%,97%,100%{transform:translate(0)} 98%{transform:translate(-3px,2px)} 99%{transform:translate(2px,-2px)} }
+  .hero img{ width:100%;height:100%;object-fit:cover; filter:contrast(1.3) saturate(1.2); }
+  .hero::after{ content:""; position:absolute; inset:0; mix-blend-mode:screen; pointer-events:none;
+    background:linear-gradient(90deg, rgba(225,6,0,.35), transparent, rgba(125,249,255,.3)); }
+  .eye{ position:absolute; width:20px;height:20px; z-index:3; transform:translate(-50%,-50%);
+    background:radial-gradient(circle,#fff 0%,var(--electric) 40%,transparent 72%);
+    box-shadow:0 0 26px 10px var(--electric); animation:strobe .18s steps(2) infinite; }
+  .eye.l{ left:var(--eyeL-x); top:var(--eyeL-y); } .eye.r{ left:var(--eyeR-x); top:var(--eyeR-y); }
+  @keyframes strobe{ 0%{opacity:1} 50%{opacity:.4} }
+  .bolt{ stroke:var(--electric); stroke-width:2; fill:none; filter:drop-shadow(0 0 5px var(--electric));
+    animation:strobe .12s steps(2) infinite; }
+
+  .menu a{ font-family:'Archivo Black',sans-serif; letter-spacing:.1em; border:3px solid #fff;
+    padding:1rem 2.4rem; transition:.1s; }
+  .menu a:hover{ background:var(--red); border-color:var(--amber); transform:skew(-6deg) scale(1.05); }
+</style>
+</head>
+<body>
+<div class="ticker fixed top-0 inset-x-0 z-50 text-sm"><span>★ EMERGENCY DISPATCH ★ THE BONE REMEMBERS ★ RHETORIC IS A WEAPON ★ EROS IS A WOUND ★ LIGHTNING FROM THE EAST ★ THE HOUR IS LATE ★&nbsp;&nbsp;★ EMERGENCY DISPATCH ★ THE BONE REMEMBERS ★ RHETORIC IS A WEAPON ★ EROS IS A WOUND ★ LIGHTNING FROM THE EAST ★ THE HOUR IS LATE ★&nbsp;&nbsp;</span></div>
+
+<main class="relative flex flex-col items-center text-center px-6 pt-16 pb-24 min-h-screen">
+  <div class="tape mt-6 mb-6 text-xs md:text-sm rotate-[-2deg]"><span>⚠ DO NOT AVERT YOUR EYES ⚠</span></div>
+  <h1 class="glitch">MAXIMAULISM</h1>
+  <p class="mt-3 text-lg md:text-2xl font-bold tracking-widest text-[color:var(--amber)] uppercase">Life is sweetest near the bone</p>
+
+  <div class="hero mt-8">
+    <img src="assets/crusader-stand-in.jpg" alt="The Crusader">
+    <span class="eye l"></span><span class="eye r"></span>
+    <svg class="absolute inset-0 z-[3] pointer-events-none" viewBox="0 0 100 150" preserveAspectRatio="none">
+      <path class="bolt" d="M44 25 L38 42 L47 39 L36 66"/>
+      <path class="bolt" d="M52 24 L59 42 L49 39 L61 68"/>
+    </svg>
+  </div>
+
+  <nav class="menu mt-10 flex flex-wrap gap-6 justify-center">
+    <a href="#">RHETORIC</a><a href="#">EROS</a>
+  </nav>
+</main>
+
+<div class="ticker rev fixed bottom-0 inset-x-0 z-50 text-xs bg-black"><span>MAXIMAULISM // PROTOTYPE 2 // FULL SCHIZO GLITCH // ESSAYS = RHETORIC // POEMS = EROS // &nbsp; MAXIMAULISM // PROTOTYPE 2 // FULL SCHIZO GLITCH // ESSAYS = RHETORIC // POEMS = EROS // &nbsp;</span></div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+  MAXIMAULISM — PROTOTYPE 1 of 3: "SACRED BROADCAST"
+  Direction: dark, cinematic, controlled menace. Deep black, gold cross-glow
+  vignette, scanlines, electric-white lightning eyes, broadcast LIVE bar +
+  lower-third menu. Self-contained; open directly in a browser.
+
+  Stand-in hero: Bohémond I of Antioch (Blondel, 1843, public domain).
+  >>> SWAP: replace assets/crusader-stand-in.jpg with the Gemini image.
+      Eye-glow positions are tuned to THIS painting; retune --eyeL/--eyeR
+      in :root for the new image. <<<
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAXIMAULISM — Sacred Broadcast</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#e8b53b; --blood:#8f1414; --electric:#d6ecff;
+    /* eye-glow positions as % of the hero image box (tuned to Bohémond) */
+    --eyeL-x:44%; --eyeL-y:25%; --eyeR-x:52%; --eyeR-y:24%;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#050505; color:#e9e2d0;
+    font-family:'EB Garamond',Georgia,serif; min-height:100vh; overflow-x:hidden; }
+  body::after{ content:""; position:fixed; inset:0; pointer-events:none; z-index:50; opacity:.4;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.4) 0 1px, transparent 1px 3px);
+    mix-blend-mode:multiply; }
+  .display{ font-family:'Cinzel',serif; letter-spacing:.06em; }
+  .title{ font-size:clamp(2.6rem,11vw,9rem); line-height:.9; font-weight:900; color:#f4ecd6;
+    text-shadow:0 0 34px rgba(232,181,59,.28); }
+  .dot{ width:.6rem;height:.6rem;border-radius:50%;background:var(--blood);
+    box-shadow:0 0 12px 2px var(--blood); animation:pulse 1.4s infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.25} }
+
+  /* hero image, framed and graded dark */
+  .hero{ position:relative; width:min(78vw,430px); aspect-ratio:1275/1918;
+    border:1px solid rgba(232,181,59,.35); overflow:hidden;
+    box-shadow:0 0 80px rgba(232,181,59,.15), inset 0 0 120px rgba(0,0,0,.9); }
+  .hero img{ width:100%; height:100%; object-fit:cover; filter:contrast(1.15) saturate(.85) brightness(.82);
+    mix-blend-mode:luminosity; }
+  .hero::before{ content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:radial-gradient(circle at 50% 30%, transparent 30%, rgba(0,0,0,.85) 100%),
+              radial-gradient(circle at 50% 28%, rgba(232,181,59,.22), transparent 55%); }
+  /* lightning eyes */
+  .eye{ position:absolute; width:16px; height:16px; z-index:3; transform:translate(-50%,-50%);
+    background:radial-gradient(circle, #fff 0%, var(--electric) 35%, transparent 70%);
+    box-shadow:0 0 22px 8px var(--electric); animation:flicker 3.2s infinite; }
+  .eye.l{ left:var(--eyeL-x); top:var(--eyeL-y); } .eye.r{ left:var(--eyeR-x); top:var(--eyeR-y); }
+  @keyframes flicker{ 0%,90%,100%{opacity:1} 91%{opacity:.15} 93%{opacity:1} 95%{opacity:.5} }
+  .bolts{ position:absolute; inset:0; z-index:3; pointer-events:none; }
+  .bolt{ stroke:var(--electric); fill:none; stroke-width:1.6; filter:drop-shadow(0 0 4px var(--electric));
+    animation:strike 3s infinite; }
+  @keyframes strike{ 0%,70%,100%{opacity:0} 72%,77%{opacity:.9} 74%{opacity:.2} }
+
+  .menu a{ font-family:'Cinzel',serif; letter-spacing:.25em; transition:.25s;
+    padding:.9rem 2.2rem; border:1px solid rgba(232,181,59,.4); }
+  .menu a:hover{ color:#050505; background:var(--gold); box-shadow:0 0 30px rgba(232,181,59,.5); }
+</style>
+</head>
+<body>
+<div class="fixed top-0 inset-x-0 z-40 flex items-center gap-3 px-4 py-2 text-xs bg-black/70 backdrop-blur border-b border-[color:var(--gold)]/30">
+  <span class="dot"></span>
+  <span class="display tracking-[.3em] text-[color:var(--gold)]">LIVE · TRANSMISSION</span>
+  <span class="ml-auto tracking-[.25em] opacity-70">MMXXVI · THE HOUR IS LATE</span>
+</div>
+
+<main class="relative flex flex-col items-center text-center px-6 pt-24 pb-28 min-h-screen">
+  <h1 class="title display">MAXIMAULISM</h1>
+  <p class="mt-4 italic text-lg md:text-2xl text-[color:var(--gold)]/90 tracking-wide">&ldquo;Life is sweetest near the bone&rdquo;</p>
+
+  <div class="hero mt-10">
+    <img src="assets/crusader-stand-in.jpg" alt="The Crusader">
+    <span class="eye l"></span><span class="eye r"></span>
+    <svg class="bolts" viewBox="0 0 100 150" preserveAspectRatio="none">
+      <path class="bolt" d="M44 25 L40 40 L46 38 L38 60"/>
+      <path class="bolt" d="M52 24 L57 40 L50 38 L58 62"/>
+    </svg>
+  </div>
+
+  <nav class="menu mt-12 flex flex-wrap gap-6 justify-center">
+    <a href="#" class="text-[color:var(--gold)]">RHETORIC</a>
+    <a href="#" class="text-[color:var(--gold)]">EROS</a>
+  </nav>
+  <p class="mt-3 text-xs tracking-[.35em] opacity-50">ESSAYS · POEMS</p>
+</main>
+
+<div class="fixed bottom-0 inset-x-0 z-40 text-center py-3 text-[.7rem] tracking-[.4em] opacity-60 bg-gradient-to-t from-black to-transparent">
+  MAXIMAULISM — PROTOTYPE 1 / SACRED BROADCAST
+</div>
+</body>
+</html>
