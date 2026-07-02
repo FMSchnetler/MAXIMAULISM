@@ -1,0 +1,313 @@
+@import "tailwindcss";
+@source "hugo_stats.json";
+
+/* ===================================================================
+   Self-hosted fonts (ADR: no CDN in production).
+   Files live in static/fonts/, so the compiled CSS at /css/ reaches them
+   with a relative ../fonts/ path that survives the /MAXIMAULISM/ subpath.
+   =================================================================== */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/eb-garamond-italic-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/eb-garamond-italic-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/eb-garamond-normal-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/eb-garamond-normal-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Pirata One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/pirata-one-normal-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Pirata One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/pirata-one-normal-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'UnifrakturCook';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/unifrakturcook-normal-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ===================================================================
+   MAXIMAULISM — "Candlelit Codex" theme (ported from
+   prototypes/prototype-5-candlelit-codex.html, the locked look).
+   =================================================================== */
+:root {
+  --gold: #e6c25c;
+  --gold-dp: #b8860b;
+  --rubric: #c21f1f;
+  --ember: #ff9a3c;
+  --electric: #ffe9b0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: #f0e4c8;
+  font-family: 'EB Garamond', Georgia, serif;
+  background: #0c0803;
+  background-image:
+    radial-gradient(circle at 50% 40%, rgba(255,154,60,.16), transparent 55%),
+    radial-gradient(circle at 50% 0%, rgba(230,194,92,.12), transparent 45%);
+  background-attachment: fixed;
+}
+/* global CRT scanline veil */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: .3;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.4) 0 1px, transparent 1px 3px);
+  mix-blend-mode: multiply;
+}
+
+/* EMERGENCY BROADCAST header strip */
+.broadcast {
+  background: var(--rubric);
+  color: #f3e6c0;
+  font-family: 'Pirata One', serif;
+  letter-spacing: .35em;
+  text-align: center;
+  border-block: 2px solid var(--gold);
+  text-shadow: 0 0 12px rgba(0,0,0,.5);
+}
+.broadcast::before { content: "\2720 "; }
+.broadcast::after  { content: " \2720"; }
+
+.blackletter { font-family: 'UnifrakturCook', serif; }
+
+.title {
+  font-size: clamp(2.6rem, 12vw, 9rem);
+  line-height: .9;
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(255,154,60,.5), 1px 1px 0 #3a2c08;
+}
+.slogan {
+  font-family: 'Pirata One', serif;
+  color: var(--rubric);
+  text-shadow: 0 0 18px rgba(194,31,31,.5);
+}
+.rule { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+/* drifting embers */
+.embers { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.ember {
+  position: absolute;
+  bottom: -10px;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 8px 2px var(--ember);
+  opacity: .7;
+  animation: rise linear infinite;
+}
+@keyframes rise { to { transform: translateY(-108vh) translateX(20px); opacity: 0; } }
+
+/* the crusader icon (hero) */
+.icon { position: relative; width: min(74vw, 380px); z-index: 2; }
+.rays {
+  position: absolute;
+  left: 50%; top: 8%;
+  width: 340px; height: 340px;
+  transform: translateX(-50%);
+  z-index: 0;
+  background: conic-gradient(from 0deg, transparent 0 8deg, rgba(230,194,92,.22) 8deg 10deg, transparent 10deg 18deg);
+  border-radius: 50%;
+  animation: spin 40s linear infinite;
+  -webkit-mask: radial-gradient(circle, #000 30%, transparent 70%);
+  mask: radial-gradient(circle, #000 30%, transparent 70%);
+}
+@keyframes spin { to { transform: translateX(-50%) rotate(360deg); } }
+.arch {
+  position: relative;
+  padding: 14px;
+  border-radius: 190px 190px 10px 10px;
+  background: linear-gradient(150deg, #f3d98a, var(--gold) 40%, #7a5a10 75%, #2e2206);
+  box-shadow: 0 0 0 2px #000, 0 20px 60px rgba(0,0,0,.8), 0 0 70px rgba(255,154,60,.3);
+}
+.arch::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 186px 186px 7px 7px;
+  border: 1px solid rgba(0,0,0,.5);
+  z-index: 6;
+  pointer-events: none;
+}
+.arch::after {
+  content: "\2720";
+  position: absolute;
+  top: 6px; left: 50%;
+  transform: translateX(-50%);
+  color: #3a2c08;
+  font-size: 1.3rem;
+  z-index: 6;
+}
+.frame { position: relative; overflow: hidden; border-radius: 180px 180px 5px 5px; aspect-ratio: 1035 / 1435; }
+.frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: sepia(.28) contrast(1.08) saturate(.95) brightness(.9);
+  animation: crtflick 5s infinite;
+}
+@keyframes crtflick { 0%, 96%, 100% { opacity: 1 } 97% { opacity: .85 } 98% { opacity: 1 } }
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255,200,120,.2), transparent 45%),
+    radial-gradient(circle at 50% 30%, transparent 40%, rgba(0,0,0,.6) 100%);
+}
+/* CRT/TV effect (warm) */
+.tv {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: .5;
+  background:
+    linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,.35) 50%),
+    linear-gradient(90deg, rgba(255,120,0,.05), transparent, rgba(255,60,0,.05));
+  background-size: 100% 3px, 100% 100%;
+}
+.tv::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 22%;
+  z-index: 4;
+  background: linear-gradient(rgba(255,220,150,0), rgba(255,220,150,.12), rgba(255,220,150,0));
+  animation: scan 6.5s linear infinite;
+}
+@keyframes scan { 0% { top: -25% } 100% { top: 105% } }
+/* the RHETORIC / EROS menu */
+.menu a {
+  font-family: 'Pirata One', serif;
+  font-size: 1.4rem;
+  letter-spacing: .15em;
+  color: var(--gold);
+  padding: .6rem 2rem;
+  border: 1px solid rgba(230,194,92,.5);
+  background: rgba(40,26,8,.4);
+  transition: .2s;
+}
+.menu a::first-letter { color: var(--rubric); }
+.menu a:hover { background: var(--rubric); color: #f3e6c0; border-color: var(--gold); }
+
+/* ===================================================================
+   Content pages (Rhetoric / Eros) — same codex atmosphere, quieter.
+   =================================================================== */
+.masthead { border-bottom: 1px solid rgba(230,194,92,.25); }
+.masthead .wordmark { font-size: 1.6rem; color: var(--gold); text-shadow: 0 0 18px rgba(255,154,60,.4); line-height: 1; }
+.masthead nav a {
+  font-family: 'Pirata One', serif;
+  letter-spacing: .12em;
+  color: var(--gold);
+  transition: .2s;
+}
+.masthead nav a::first-letter { color: var(--rubric); }
+.masthead nav a:hover { color: #f3e6c0; }
+.masthead nav a.active { color: #f3e6c0; text-shadow: 0 0 14px rgba(194,31,31,.6); }
+
+.prose-codex { color: #f0e4c8; }
+.prose-codex .piece-title {
+  font-family: 'Pirata One', serif;
+  color: var(--gold);
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 1.05;
+  text-shadow: 0 0 26px rgba(255,154,60,.35);
+}
+.prose-codex .section-title {
+  font-family: 'UnifrakturCook', serif;
+  color: var(--gold);
+  font-size: clamp(2.4rem, 9vw, 4.5rem);
+  line-height: .95;
+  text-shadow: 0 0 34px rgba(255,154,60,.45);
+}
+.prose-codex .lead { color: #cdbf9e; }
+.prose-codex p { line-height: 1.85; font-size: 1.18rem; margin: 1.1em 0; }
+.prose-codex a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+.prose-codex a:hover { color: var(--rubric); }
+
+/* index of pieces within a section */
+.piece-list a {
+  display: block;
+  font-family: 'Pirata One', serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(230,194,92,.3);
+  background: rgba(40,26,8,.35);
+  transition: .2s;
+}
+.piece-list a:hover { background: var(--rubric); color: #f3e6c0; border-color: var(--gold); }
+
+/* empty section notice (e.g. Fables before it has any fiction) */
+.empty-note {
+  margin-top: 2.5rem;
+  font-style: italic;
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: var(--rubric);
+  text-shadow: 0 0 16px rgba(194,31,31,.35);
+}
+.empty-note::before { content: "\2720\00a0\00a0"; color: var(--gold); }
+
+/* verse — poems (Eros) and embedded quotes (essay Whitman blocks).
+   The poem shortcode emits raw <br> so every line and stanza break is
+   preserved verbatim. */
+.poem {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  white-space: normal;
+}
+.poem.quote {
+  font-style: italic;
+  color: #d9c48f;
+  margin: 1.6em 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid rgba(230,194,92,.45);
+}

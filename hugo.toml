@@ -1,0 +1,62 @@
+# MAXIMAULISM — Hugo site config.
+# baseURL: github.io host is lowercase; the /MAXIMAULISM/ path keeps its case
+# (ADR 0001). In CI the Actions deploy overrides this with the derived base_url.
+baseURL = "https://fmschnetler.github.io/MAXIMAULISM/"
+languageCode = "en-us"
+title = "MAXIMAULISM"
+enableEmoji = true
+
+# Curly quotes / em-dashes / accents in the content are authored literally and
+# must survive verbatim — do NOT let Goldmark "smart-punctuate" straight quotes,
+# and keep the author's own punctuation exactly as written.
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true          # verse shortcodes emit raw <br> markup
+  [markup.goldmark.extensions]
+    [markup.goldmark.extensions.typographer]
+      disable = true         # no auto-smartypants; author's glyphs stand as-is
+
+# --- Tailwind v4 via Hugo's native css.TailwindCSS pipeline (ADR 0003) ---
+# Do NOT delete the buildStats/cachebuster block or the hugo_stats.json mount.
+# Without them Tailwind cannot see which utility classes the templates use and
+# silently purges them, breaking every style.
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = 'assets/notwatching/hugo_stats\.json'
+    target = 'css'
+  [[build.cachebusters]]
+    source = '(postcss|tailwind)\.config\.js'
+    target = 'css'
+  [[build.cachebusters]]
+    source = 'assets/.*\.(js|ts|jsx|tsx)'
+    target = 'js'
+  [[build.cachebusters]]
+    source = '(package\.json)'
+    target = 'css'
+
+[module]
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    disableWatch = true
+    source = 'hugo_stats.json'
+    target = 'assets/notwatching/hugo_stats.json'
+
+# --- Navigation: the domain terms are the labels, not "Essays"/"Poems" ---
+[menus]
+  [[menus.main]]
+    name = "Rhetoric"
+    pageRef = "/rhetoric"
+    weight = 10
+  [[menus.main]]
+    name = "Eros"
+    pageRef = "/eros"
+    weight = 20
+  [[menus.main]]
+    name = "Fables"
+    pageRef = "/fables"
+    weight = 30

@@ -13,6 +13,9 @@ secrets/
 /public/
 /resources/_gen/
 .hugo_build.lock
+# Regenerated every build by [build.buildStats]; must stay ignored (Tailwind
+# respects .gitignore, which is exactly why main.css @source's it explicitly).
+hugo_stats.json
 
 # === Node / Tailwind tooling ===
 node_modules/

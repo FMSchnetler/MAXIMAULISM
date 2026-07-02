@@ -1,0 +1,10 @@
+{
+  "name": "maximaulism",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MAXIMAULISM — a Hugo site hosting one author's Rhetoric (essays) and Eros (poems).",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0"
+  }
+}
