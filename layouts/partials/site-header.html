@@ -1,7 +1,7 @@
 {{- /* Compact masthead for content pages (Rhetoric / Eros). The landing page
   uses the full hero instead and does not include this. */ -}}
 <header class="masthead relative z-40 flex items-center justify-between gap-6 px-6 py-4 flex-wrap">
-  <a href="{{ "/" | relURL }}" class="wordmark blackletter">MAXIMAULISM</a>
+  <a href="{{ site.Home.RelPermalink }}" class="wordmark blackletter">MAXIMAULISM</a>
   <nav class="flex gap-6 text-lg">
     {{ range site.Menus.main }}
       {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}

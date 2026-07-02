@@ -54,6 +54,12 @@ workflow uses **no secrets**.
 To enable deployment on a fresh clone: **repo → Settings → Pages → Build and
 deployment → Source → GitHub Actions.**
 
+> **Note — the repo's "About" website link is set manually.** This is a project
+> site, so its URL includes the repo path: `https://fmschnetler.github.io/MAXIMAULISM/`.
+> GitHub does *not* fill this in for you. Set it under **repo page → About (⚙️) →
+> Website**; if it's blank or set to `https://fmschnetler.github.io/` it will 404,
+> even though the deployed site itself is fine.
+
 ## Project docs
 
 - [`CONTEXT.md`](CONTEXT.md) — project overview and ubiquitous language.

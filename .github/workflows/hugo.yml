@@ -51,6 +51,10 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          # Enable Pages (Actions source) if not already, avoiding a "Get Pages
+          # site failed / Not Found" race on the first deploy. Idempotent.
+          enablement: true
       - name: Build with Hugo
         run: |
           hugo \
