@@ -1,0 +1,25 @@
+{{ define "main" }}
+<main class="relative flex flex-col items-center text-center px-6 pt-10 pb-16 min-h-screen">
+  <h1 class="title blackletter">MAXIMAULISM</h1>
+  <div class="rule w-2/3 my-3"></div>
+  <p class="slogan text-2xl md:text-4xl">&ldquo;Life is sweetest near the bone&rdquo;</p>
+
+  <div class="icon mt-8">
+    <div class="rays"></div>
+    <div class="arch"><div class="frame">
+      {{ with resources.Get "images/crusader.jpg" }}
+      <img src="{{ .RelPermalink }}" alt="The Crusader" width="{{ .Width }}" height="{{ .Height }}">
+      {{ end }}
+      <span class="tv"></span>
+    </div></div>
+  </div>
+
+  <nav class="menu mt-11 flex flex-wrap gap-8 justify-center">
+    {{ range site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}
+  </nav>
+  <p class="mt-4 text-xs tracking-[.3em] uppercase opacity-55">Essays &middot; Poems &middot; Fiction</p>
+</main>
+{{ end }}
+
+{{/* Home has no footer — the hero fills the screen. */}}
+{{ define "footer" }}{{ end }}

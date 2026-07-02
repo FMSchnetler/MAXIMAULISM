@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ or site.LanguageCode "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ .Description | default "MAXIMAULISM — the collected Rhetoric and Eros of one author. Life is sweetest near the bone." }}">
+  <link rel="preload" href="{{ "fonts/unifrakturcook-normal-700-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ "fonts/eb-garamond-normal-400-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  {{ with (templates.Defer (dict "key" "global")) }}
+    {{ partial "css.html" . }}
+  {{ end }}
+</head>
+<body>
+  {{ partial "embers.html" . }}
+  <div class="broadcast relative z-40 text-xs md:text-sm py-1">EMERGENCY BROADCAST · ANNO DOMINI MMXXVI · THE HOUR IS LATE</div>
+  {{ block "main" . }}{{ end }}
+  {{ block "footer" . }}
+    <footer class="relative z-40 text-center py-8 text-[.7rem] tracking-[.4em] uppercase opacity-50">
+      MAXIMAULISM &middot; Life is sweetest near the bone
+    </footer>
+  {{ end }}
+</body>
+</html>

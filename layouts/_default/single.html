@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{ partial "site-header.html" . }}
+<main class="relative z-10 mx-auto max-w-2xl px-6 py-14 prose-codex">
+  {{ with .Parent }}<p class="text-xs tracking-[.35em] uppercase opacity-60">{{ .Title }}</p>{{ end }}
+  <h1 class="piece-title mt-2">{{ .Title }}</h1>
+  <div class="rule w-24 my-6"></div>
+  <article>{{ .Content }}</article>
+  {{ with .Parent }}
+  <div class="mt-14 pt-6" style="border-top:1px solid rgba(230,194,92,.2)">
+    <a href="{{ .RelPermalink }}" class="text-sm tracking-widest uppercase" style="color:var(--gold)">&larr; {{ .Title }}</a>
+  </div>
+  {{ end }}
+</main>
+{{ end }}

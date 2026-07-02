@@ -1,0 +1,9 @@
+{{- /* Verse renderer. Emits one <br> per source newline so every line and
+  stanza break is preserved verbatim — used for Eros poems and for the
+  embedded Whitman quotes in the Rhetoric essay (class="quote").
+  Text is HTML-escaped before the <br>s are inserted, so the author's own
+  glyphs stand exactly as written. */ -}}
+{{- $inner := trim .Inner "\r\n" -}}
+<div class="poem{{ with .Get "class" }} {{ . }}{{ end }}">
+{{- $inner | htmlEscape | replaceRE "\r?\n" "<br>\n" | safeHTML -}}
+</div>

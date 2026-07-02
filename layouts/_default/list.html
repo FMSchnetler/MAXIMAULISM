@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{ partial "site-header.html" . }}
+<main class="relative z-10 mx-auto max-w-3xl px-6 py-14 prose-codex">
+  <h1 class="section-title">{{ .Title }}</h1>
+  {{ with .Content }}<div class="lead mt-4">{{ . }}</div>{{ end }}
+  <div class="piece-list mt-10 flex flex-col gap-4">
+    {{ range .Pages.ByWeight }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ else }}
+      <p class="empty-note">the Imagination is hampered, the fingers are sore, and the pen is broken</p>
+    {{ end }}
+  </div>
+</main>
+{{ end }}

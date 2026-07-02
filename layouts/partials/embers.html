@@ -1,0 +1,17 @@
+{{- /* Drifting embers — ambient background for every page (from prototype 5). */ -}}
+<div class="embers" id="embers"></div>
+<script>
+  (function () {
+    var e = document.getElementById('embers');
+    if (!e) return;
+    for (var i = 0; i < 28; i++) {
+      var s = document.createElement('span');
+      s.className = 'ember';
+      s.style.left = (i * 3.6 + Math.round(Math.sin(i) * 4)) + '%';
+      s.style.animationDuration = (6 + (i % 7)) + 's';
+      s.style.animationDelay = (-(i % 9)) + 's';
+      s.style.opacity = (0.4 + (i % 5) / 10);
+      e.appendChild(s);
+    }
+  })();
+</script>
