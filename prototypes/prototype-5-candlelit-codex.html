@@ -16,7 +16,8 @@
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Pirata+One&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{ --gold:#e6c25c; --gold-dp:#b8860b; --rubric:#c21f1f; --ember:#ff9a3c; --electric:#ffe9b0;
-    --eyeL-x:44%; --eyeL-y:25%; --eyeR-x:52%; --eyeR-y:24%; }
+    /* eyes retuned to cropped crusader.jpg (1035x1435, name removed) */
+    --eyeL-x:42%; --eyeL-y:21%; --eyeR-x:51%; --eyeR-y:20.5%; }
   *{ box-sizing:border-box; }
   body{ margin:0; min-height:100vh; overflow-x:hidden; color:#f0e4c8;
     font-family:'EB Garamond',Georgia,serif;
@@ -26,6 +27,12 @@
       radial-gradient(circle at 50% 0%, rgba(230,194,92,.12), transparent 45%); }
   body::after{ content:""; position:fixed; inset:0; z-index:50; pointer-events:none; opacity:.3;
     background:repeating-linear-gradient(0deg, rgba(0,0,0,.4) 0 1px, transparent 1px 3px); mix-blend-mode:multiply; }
+
+  /* EMERGENCY BROADCAST header strip (brought back from prototype 3) */
+  .broadcast{ background:var(--rubric); color:#f3e6c0; font-family:'Pirata One',serif;
+    letter-spacing:.35em; text-align:center; border-block:2px solid var(--gold);
+    text-shadow:0 0 12px rgba(0,0,0,.5); }
+  .broadcast::before{ content:"✝ "; } .broadcast::after{ content:" ✝"; }
 
   .blackletter{ font-family:'UnifrakturCook',serif; }
   .title{ font-size:clamp(2.6rem,12vw,9rem); line-height:.9; color:var(--gold);
@@ -52,7 +59,7 @@
   /* filigree corner marks */
   .arch::after{ content:"✠"; position:absolute; top:6px; left:50%; transform:translateX(-50%);
     color:#3a2c08; font-size:1.3rem; z-index:6; }
-  .frame{ position:relative; overflow:hidden; border-radius:180px 180px 5px 5px; aspect-ratio:1275/1918; }
+  .frame{ position:relative; overflow:hidden; border-radius:180px 180px 5px 5px; aspect-ratio:1035/1435; }
   .frame img{ width:100%;height:100%;object-fit:cover; filter:sepia(.28) contrast(1.08) saturate(.95) brightness(.9);
     animation:crtflick 5s infinite; }
   @keyframes crtflick{ 0%,96%,100%{opacity:1} 97%{opacity:.85} 98%{opacity:1} }
@@ -84,7 +91,8 @@
 </head>
 <body>
 <div class="embers" id="embers"></div>
-<main class="relative flex flex-col items-center text-center px-6 pt-12 pb-16 min-h-screen">
+<div class="broadcast relative z-40 text-xs md:text-sm py-1">EMERGENCY BROADCAST · ANNO DOMINI MMXXVI · THE HOUR IS LATE</div>
+<main class="relative flex flex-col items-center text-center px-6 pt-10 pb-16 min-h-screen">
   <h1 class="title blackletter">MAXIMAULISM</h1>
   <div class="rule w-2/3 my-3"></div>
   <p class="slogan text-2xl md:text-4xl">&ldquo;Life is sweetest near the bone&rdquo;</p>
@@ -92,11 +100,11 @@
   <div class="icon mt-8">
     <div class="rays"></div>
     <div class="arch"><div class="frame">
-      <img src="assets/crusader-stand-in.jpg" alt="The Crusader">
+      <img src="assets/crusader.jpg" alt="The Crusader">
       <span class="tv"></span>
       <span class="eye l"></span><span class="eye r"></span>
       <svg class="absolute inset-0 z-[5] pointer-events-none" viewBox="0 0 100 150" preserveAspectRatio="none">
-        <path class="bolt" d="M44 25 L39 40 L47 38 L37 60"/><path class="bolt" d="M52 24 L58 40 L50 38 L60 62"/>
+        <path class="bolt" d="M42 31 L37 47 L46 44 L36 66"/><path class="bolt" d="M51 30 L58 47 L49 44 L60 68"/>
       </svg>
     </div></div>
   </div>
