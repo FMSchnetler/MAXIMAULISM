@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+  MAXIMAULISM — ROUND 2, PROTOTYPE 6: "BROADCAST RELIQUARY"
+  1+3 mix, signal branch: dark ground with red vignette, LIVE broadcast bar,
+  blackletter title with red underglow, gold arch crusader with the STRONGEST
+  CRT/TV effect (heavy scanlines, RGB split, occasional glitch jump), cyan
+  lightning, lower-third menu + thin scripture ticker. INFOWARS-cathedral.
+  Stand-in hero: Bohémond I of Antioch (Blondel 1843, public domain).
+  >>> SWAP: replace assets/crusader-stand-in.jpg; retune --eyeL/--eyeR. <<<
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAXIMAULISM — Broadcast Reliquary</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Cinzel:wght@700;900&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{ --gold:#e6c25c; --gold-dp:#b8860b; --blood:#c21f1f; --electric:#7df9ff;
+    --eyeL-x:44%; --eyeL-y:25%; --eyeR-x:52%; --eyeR-y:24%; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; min-height:100vh; overflow-x:hidden; color:#e9e2d0;
+    font-family:'Special Elite',monospace; background:#050303;
+    background-image:
+      radial-gradient(circle at 50% 25%, rgba(230,194,92,.10), transparent 55%),
+      radial-gradient(circle at 50% 120%, rgba(194,31,31,.28), transparent 55%); }
+  body::after{ content:""; position:fixed; inset:0; z-index:55; pointer-events:none; opacity:.4;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.4) 0 1px, transparent 1px 3px);
+    animation:roll 10s linear infinite; mix-blend-mode:multiply; }
+  @keyframes roll{ to{ background-position:0 100px; } }
+
+  .dot{ width:.55rem;height:.55rem;border-radius:50%;background:var(--blood);
+    box-shadow:0 0 12px 2px var(--blood); animation:pulse 1.3s infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.2} }
+
+  .blackletter{ font-family:'UnifrakturCook',serif; }
+  .title{ font-size:clamp(2.5rem,12vw,9rem); line-height:.9; color:#f4ecd6;
+    text-shadow:0 0 6px rgba(255,255,255,.3), 0 0 34px rgba(194,31,31,.6), 2px 2px 0 #3a0808; }
+  .slogan{ font-family:'Cinzel',serif; letter-spacing:.06em; color:var(--gold); }
+
+  .icon{ position:relative; width:min(70vw,350px); }
+  .icon::before{ content:""; position:absolute; left:50%; top:10%; width:150px;height:150px;
+    transform:translateX(-50%); border-radius:50%; z-index:0;
+    background:radial-gradient(circle, rgba(230,194,92,.5), transparent 68%); animation:halo 5s infinite; }
+  @keyframes halo{ 0%,100%{opacity:.4} 50%{opacity:.8} }
+  .arch{ position:relative; padding:11px; border-radius:180px 180px 8px 8px;
+    background:linear-gradient(150deg,var(--gold),#7a5a10 60%,#2e2206);
+    box-shadow:0 0 0 2px #000, 0 0 0 4px var(--blood), 0 18px 55px rgba(0,0,0,.8), 0 0 60px rgba(194,31,31,.35); }
+  .frame{ position:relative; overflow:hidden; border-radius:170px 170px 4px 4px; aspect-ratio:1275/1918;
+    animation:vhold 7s infinite; }
+  @keyframes vhold{ 0%,95%,100%{transform:translateY(0)} 96%{transform:translateY(-3px)} 97%{transform:translateY(2px)} }
+  .frame img{ width:100%;height:100%;object-fit:cover; filter:contrast(1.2) saturate(.9) brightness(.85); }
+  .frame::after{ content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(circle at 50% 28%, transparent 30%, rgba(0,0,0,.8) 100%); }
+  /* STRONG CRT/TV effect */
+  .tv{ position:absolute; inset:0; z-index:3; pointer-events:none; mix-blend-mode:screen; opacity:.8;
+    background:linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,.5) 50%),
+              linear-gradient(90deg, rgba(255,0,60,.12), transparent 45%, rgba(0,200,255,.12));
+    background-size:100% 3px, 100% 100%; }
+  .tv::before{ content:""; position:absolute; left:0; right:0; height:20%; z-index:4;
+    background:linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.16), rgba(255,255,255,0));
+    animation:scan 4.5s linear infinite; }
+  @keyframes scan{ 0%{top:-25%} 100%{top:105%} }
+  .tv::after{ content:""; position:absolute; inset:0; z-index:4; mix-blend-mode:screen;
+    background:linear-gradient(90deg, rgba(255,0,0,.08), transparent, rgba(0,255,255,.08));
+    animation:rgbjump .2s steps(2) infinite; opacity:0; }
+  @keyframes rgbjump{ 0%,90%{opacity:0;transform:translateX(0)} 92%{opacity:1;transform:translateX(2px)} 96%{opacity:1;transform:translateX(-2px)} }
+  .eye{ position:absolute; width:16px;height:16px; z-index:5; transform:translate(-50%,-50%);
+    background:radial-gradient(circle,#fff 0%,var(--electric) 40%,transparent 72%);
+    box-shadow:0 0 24px 9px var(--electric); animation:flicker 3s infinite; }
+  .eye.l{ left:var(--eyeL-x); top:var(--eyeL-y); } .eye.r{ left:var(--eyeR-x); top:var(--eyeR-y); }
+  @keyframes flicker{ 0%,90%,100%{opacity:1} 91%{opacity:.15} 93%{opacity:.9} }
+  .bolt{ stroke:var(--electric); stroke-width:1.8; fill:none; filter:drop-shadow(0 0 5px var(--electric)); animation:strike 3s infinite; }
+  @keyframes strike{ 0%,70%,100%{opacity:0} 72%,78%{opacity:.9} 74%{opacity:.2} }
+
+  .menu a{ font-family:'Cinzel',serif; font-weight:900; letter-spacing:.22em; color:var(--gold);
+    padding:.85rem 2.2rem; border:1px solid rgba(230,194,92,.45); transition:.2s; }
+  .menu a:hover{ color:#050303; background:var(--gold); box-shadow:0 0 30px rgba(230,194,92,.5); }
+
+  .ticker{ overflow:hidden; white-space:nowrap; border-top:1px solid rgba(230,194,92,.3); }
+  .ticker span{ display:inline-block; padding:.35rem 0; animation:scroll 26s linear infinite; }
+  @keyframes scroll{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+</style>
+</head>
+<body>
+<div class="fixed top-0 inset-x-0 z-50 flex items-center gap-3 px-4 py-2 text-xs bg-black/75 backdrop-blur border-b border-[color:var(--blood)]/50">
+  <span class="dot"></span><span class="tracking-[.3em] text-[color:var(--blood)] font-bold" style="font-family:'Cinzel'">LIVE · TRANSMISSION</span>
+  <span class="ml-auto tracking-[.25em] opacity-70">ANNO DOMINI MMXXVI</span>
+</div>
+
+<main class="relative flex flex-col items-center text-center px-6 pt-20 pb-16 min-h-screen">
+  <h1 class="title blackletter">MAXIMAULISM</h1>
+  <p class="slogan mt-3 text-lg md:text-2xl">&ldquo;Life is sweetest near the bone&rdquo;</p>
+
+  <div class="icon mt-8">
+    <div class="arch"><div class="frame">
+      <img src="assets/crusader-stand-in.jpg" alt="The Crusader">
+      <span class="tv"></span>
+      <span class="eye l"></span><span class="eye r"></span>
+      <svg class="absolute inset-0 z-[5] pointer-events-none" viewBox="0 0 100 150" preserveAspectRatio="none">
+        <path class="bolt" d="M44 25 L38 42 L47 39 L36 64"/><path class="bolt" d="M52 24 L59 42 L49 39 L61 66"/>
+      </svg>
+    </div></div>
+  </div>
+
+  <nav class="menu mt-10 flex flex-wrap gap-6 justify-center">
+    <a href="#">RHETORIC</a><a href="#">EROS</a>
+  </nav>
+</main>
+
+<div class="ticker fixed bottom-0 inset-x-0 z-50 text-[.72rem] tracking-[.2em] bg-black/80 text-[color:var(--gold)]">
+  <span>✝ THE HOUR IS LATE ✝ RHETORIC = ESSAYS ✝ EROS = POEMS ✝ LIFE IS SWEETEST NEAR THE BONE ✝ &nbsp; ✝ THE HOUR IS LATE ✝ RHETORIC = ESSAYS ✝ EROS = POEMS ✝ LIFE IS SWEETEST NEAR THE BONE ✝ &nbsp;</span>
+</div>
+</body>
+</html>

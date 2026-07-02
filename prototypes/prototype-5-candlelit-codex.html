@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+  MAXIMAULISM — ROUND 2, PROTOTYPE 5: "CANDLELIT CODEX"
+  1+3 mix, warm branch: dark candlelit ground, gold blackletter title, ornate
+  gold arch with radiating halo + drifting embers, red rubricated slogan.
+  Keeps the CRT/TV effect on the crusader (warm-tinted). Sacred, not broadcast.
+  Stand-in hero: Bohémond I of Antioch (Blondel 1843, public domain).
+  >>> SWAP: replace assets/crusader-stand-in.jpg; retune --eyeL/--eyeR. <<<
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAXIMAULISM — Candlelit Codex</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Pirata+One&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{ --gold:#e6c25c; --gold-dp:#b8860b; --rubric:#c21f1f; --ember:#ff9a3c; --electric:#ffe9b0;
+    --eyeL-x:44%; --eyeL-y:25%; --eyeR-x:52%; --eyeR-y:24%; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; min-height:100vh; overflow-x:hidden; color:#f0e4c8;
+    font-family:'EB Garamond',Georgia,serif;
+    background:#0c0803;
+    background-image:
+      radial-gradient(circle at 50% 40%, rgba(255,154,60,.16), transparent 55%),
+      radial-gradient(circle at 50% 0%, rgba(230,194,92,.12), transparent 45%); }
+  body::after{ content:""; position:fixed; inset:0; z-index:50; pointer-events:none; opacity:.3;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.4) 0 1px, transparent 1px 3px); mix-blend-mode:multiply; }
+
+  .blackletter{ font-family:'UnifrakturCook',serif; }
+  .title{ font-size:clamp(2.6rem,12vw,9rem); line-height:.9; color:var(--gold);
+    text-shadow:0 0 40px rgba(255,154,60,.5), 1px 1px 0 #3a2c08; }
+  .slogan{ font-family:'Pirata One',serif; color:var(--rubric); text-shadow:0 0 18px rgba(194,31,31,.5); }
+  .rule{ height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+
+  /* drifting embers */
+  .embers{ position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+  .ember{ position:absolute; bottom:-10px; width:3px;height:3px; border-radius:50%;
+    background:var(--ember); box-shadow:0 0 8px 2px var(--ember); opacity:.7; animation:rise linear infinite; }
+  @keyframes rise{ to{ transform:translateY(-108vh) translateX(20px); opacity:0; } }
+
+  .icon{ position:relative; width:min(74vw,380px); z-index:2; }
+  .rays{ position:absolute; left:50%; top:8%; width:340px;height:340px; transform:translateX(-50%); z-index:0;
+    background:conic-gradient(from 0deg, transparent 0 8deg, rgba(230,194,92,.22) 8deg 10deg, transparent 10deg 18deg);
+    border-radius:50%; animation:spin 40s linear infinite; -webkit-mask:radial-gradient(circle,#000 30%,transparent 70%); mask:radial-gradient(circle,#000 30%,transparent 70%); }
+  @keyframes spin{ to{ transform:translateX(-50%) rotate(360deg); } }
+  .arch{ position:relative; padding:14px; border-radius:190px 190px 10px 10px;
+    background:linear-gradient(150deg,#f3d98a,var(--gold) 40%,#7a5a10 75%,#2e2206);
+    box-shadow:0 0 0 2px #000, 0 20px 60px rgba(0,0,0,.8), 0 0 70px rgba(255,154,60,.3); }
+  .arch::before{ content:""; position:absolute; inset:5px; border-radius:186px 186px 7px 7px;
+    border:1px solid rgba(0,0,0,.5); z-index:6; pointer-events:none; }
+  /* filigree corner marks */
+  .arch::after{ content:"✠"; position:absolute; top:6px; left:50%; transform:translateX(-50%);
+    color:#3a2c08; font-size:1.3rem; z-index:6; }
+  .frame{ position:relative; overflow:hidden; border-radius:180px 180px 5px 5px; aspect-ratio:1275/1918; }
+  .frame img{ width:100%;height:100%;object-fit:cover; filter:sepia(.28) contrast(1.08) saturate(.95) brightness(.9);
+    animation:crtflick 5s infinite; }
+  @keyframes crtflick{ 0%,96%,100%{opacity:1} 97%{opacity:.85} 98%{opacity:1} }
+  .frame::after{ content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(circle at 50% 28%, rgba(255,200,120,.2), transparent 45%),
+              radial-gradient(circle at 50% 30%, transparent 40%, rgba(0,0,0,.6) 100%); }
+  /* CRT/TV effect (warm) */
+  .tv{ position:absolute; inset:0; z-index:3; pointer-events:none; mix-blend-mode:screen; opacity:.5;
+    background:linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,.35) 50%),
+              linear-gradient(90deg, rgba(255,120,0,.05), transparent, rgba(255,60,0,.05));
+    background-size:100% 3px, 100% 100%; }
+  .tv::before{ content:""; position:absolute; left:0; right:0; height:22%; z-index:4;
+    background:linear-gradient(rgba(255,220,150,0), rgba(255,220,150,.12), rgba(255,220,150,0));
+    animation:scan 6.5s linear infinite; }
+  @keyframes scan{ 0%{top:-25%} 100%{top:105%} }
+  .eye{ position:absolute; width:15px;height:15px; z-index:5; transform:translate(-50%,-50%);
+    background:radial-gradient(circle,#fff 0%,var(--electric) 45%,transparent 74%);
+    box-shadow:0 0 22px 8px var(--electric); animation:flicker 3.6s infinite; }
+  .eye.l{ left:var(--eyeL-x); top:var(--eyeL-y); } .eye.r{ left:var(--eyeR-x); top:var(--eyeR-y); }
+  @keyframes flicker{ 0%,88%,100%{opacity:1} 89%{opacity:.2} 92%{opacity:.9} }
+  .bolt{ stroke:var(--electric); stroke-width:1.6; fill:none; filter:drop-shadow(0 0 5px var(--ember)); animation:strike 3.4s infinite; }
+  @keyframes strike{ 0%,72%,100%{opacity:0} 74%,80%{opacity:.9} 76%{opacity:.2} }
+
+  .menu a{ font-family:'Pirata One',serif; font-size:1.4rem; letter-spacing:.15em; color:var(--gold);
+    padding:.6rem 2rem; border:1px solid rgba(230,194,92,.5); background:rgba(40,26,8,.4); transition:.2s; }
+  .menu a::first-letter{ color:var(--rubric); }
+  .menu a:hover{ background:var(--rubric); color:#f3e6c0; border-color:var(--gold); }
+</style>
+</head>
+<body>
+<div class="embers" id="embers"></div>
+<main class="relative flex flex-col items-center text-center px-6 pt-12 pb-16 min-h-screen">
+  <h1 class="title blackletter">MAXIMAULISM</h1>
+  <div class="rule w-2/3 my-3"></div>
+  <p class="slogan text-2xl md:text-4xl">&ldquo;Life is sweetest near the bone&rdquo;</p>
+
+  <div class="icon mt-8">
+    <div class="rays"></div>
+    <div class="arch"><div class="frame">
+      <img src="assets/crusader-stand-in.jpg" alt="The Crusader">
+      <span class="tv"></span>
+      <span class="eye l"></span><span class="eye r"></span>
+      <svg class="absolute inset-0 z-[5] pointer-events-none" viewBox="0 0 100 150" preserveAspectRatio="none">
+        <path class="bolt" d="M44 25 L39 40 L47 38 L37 60"/><path class="bolt" d="M52 24 L58 40 L50 38 L60 62"/>
+      </svg>
+    </div></div>
+  </div>
+
+  <nav class="menu mt-11 flex flex-wrap gap-8 justify-center">
+    <a href="#">Rhetoric</a><a href="#">Eros</a>
+  </nav>
+  <p class="mt-4 text-xs tracking-[.3em] uppercase opacity-55">Essays · Poems</p>
+</main>
+<div class="fixed bottom-0 inset-x-0 z-40 text-center py-2 text-[.7rem] tracking-[.4em] opacity-50">MAXIMAULISM — PROTOTYPE 5 / CANDLELIT CODEX</div>
+<script>
+  const e=document.getElementById('embers');
+  for(let i=0;i<28;i++){const s=document.createElement('span');s.className='ember';
+    s.style.left=(i*3.6+Math.round(Math.sin(i)*4))+'%';
+    s.style.animationDuration=(6+ (i%7))+'s';
+    s.style.animationDelay=(-(i%9))+'s';
+    s.style.opacity=(0.4+(i%5)/10);e.appendChild(s);}
+</script>
+</body>
+</html>
