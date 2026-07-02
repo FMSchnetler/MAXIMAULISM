@@ -25,5 +25,8 @@ _Avoid_: user, contributor.
 
 **The Crusader**:
 The hero image on the main page — a crusader with lightning coming out of his
-eyes. Generated once via the Gemini API as a base image, then dramatized with
-CSS/SVG effects (lightning, grain, glitch) layered on top.
+eyes. Sourced from a public-domain 1843 portrait of Bohémond I of Antioch
+(Blondel), cropped to remove the name plate, then dramatized with CSS/SVG
+effects (CRT scanlines, lightning eyes, glow) layered on top. No AI image
+generation is used; the Gemini key scaffolding (`.env.example`) is retained but
+unused.
