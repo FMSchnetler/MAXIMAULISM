@@ -77,6 +77,10 @@
 
 * { box-sizing: border-box; }
 
+/* Root-level guard: nothing decorative should ever produce sideways scroll on
+   narrow (portrait phone) viewports. Belt to the body's suspenders below. */
+html { overflow-x: hidden; }
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -148,7 +152,8 @@ body::after {
 .rays {
   position: absolute;
   left: 50%; top: 8%;
-  width: 340px; height: 340px;
+  /* cap to the viewport so the halo never spills past a portrait phone edge */
+  width: min(340px, 80vw); height: min(340px, 80vw);
   transform: translateX(-50%);
   z-index: 0;
   background: conic-gradient(from 0deg, transparent 0 8deg, rgba(230,194,92,.22) 8deg 10deg, transparent 10deg 18deg);
@@ -310,4 +315,34 @@ body::after {
   margin: 1.6em 0;
   padding-left: 1.25rem;
   border-left: 2px solid rgba(230,194,92,.45);
+}
+
+/* ===================================================================
+   Mobile / portrait fixes. Desktop keeps the locked "candlelit codex"
+   look verbatim — these only engage on small screens or when the
+   visitor has asked for reduced motion.
+   =================================================================== */
+
+/* "MAXIMAULISM" is a single unbreakable blackletter word. At 12vw it
+   overruns a portrait phone and, with nothing to wrap on, shoves the page
+   sideways. Ease the preferred size on small screens so it fits the padded
+   column; desktop (where 12vw stays under the 9rem cap) is unaffected. */
+@media (max-width: 640px) {
+  .title { font-size: clamp(2rem, 10vw, 9rem); }
+}
+
+/* background-attachment: fixed forces a full-page repaint on every scroll
+   frame on mobile GPUs — the main cause of the "slow and iffy" feel. The
+   gradients look effectively identical scrolling with the (short) pages. */
+@media (max-width: 768px) {
+  body { background-attachment: scroll; }
+}
+
+/* Respect an explicit reduced-motion preference: drop the perpetual
+   spin/flicker/scan/ember animations that keep the compositor busy. */
+@media (prefers-reduced-motion: reduce) {
+  .ember,
+  .rays,
+  .frame img,
+  .tv::before { animation: none; }
 }
