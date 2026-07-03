@@ -241,6 +241,7 @@ body::after {
 }
 .menu a::first-letter { color: var(--rubric); }
 .menu a:hover { background: var(--rubric); color: #f3e6c0; border-color: var(--gold); }
+.menu a:hover::first-letter { color: #f3e6c0; }
 
 /* ===================================================================
    Content pages (Rhetoric / Eros) — same codex atmosphere, quieter.
@@ -289,6 +290,7 @@ body::after {
   transition: .2s;
 }
 .piece-list a:hover { background: var(--rubric); color: #f3e6c0; border-color: var(--gold); }
+.piece-list a:hover::first-letter { color: #f3e6c0; }
 
 /* empty section notice (e.g. Fables before it has any fiction) */
 .empty-note {
