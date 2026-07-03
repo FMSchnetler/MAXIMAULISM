@@ -244,6 +244,63 @@ body::after {
 .menu a:hover::first-letter { color: #f3e6c0; }
 
 /* ===================================================================
+   Home — "Town Crier": a second scroll-screen beneath the hero listing
+   the latest pieces (one featured with a lead, the rest in a crawl).
+   Scroll-snap is scoped to html.home so content pages never snap.
+   =================================================================== */
+html.home { scroll-snap-type: y proximity; scroll-behavior: smooth; }
+.snap-screen { scroll-snap-align: start; }
+
+.crier { min-height: 100vh; position: relative; z-index: 2; }
+.crier-inner { width: min(92vw, 760px); margin-inline: auto; }
+.crier-title {
+  color: var(--gold);
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  line-height: .95;
+  text-align: center;
+  margin-bottom: 1.6rem;
+  text-shadow: 0 0 34px rgba(255,154,60,.45);
+}
+.crier-feat {
+  position: relative;
+  display: block;
+  text-align: left;
+  padding: 1.6rem 1.7rem;
+  border: 1px solid rgba(230,194,92,.32);
+  border-radius: 6px;
+  background: rgba(40,26,8,.42);
+  box-shadow: 0 16px 44px rgba(0,0,0,.5);
+  overflow: hidden;
+  transition: .2s;
+}
+.crier-feat::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--rubric); }
+.crier-kick { font-family: 'Pirata One', serif; letter-spacing: .2em; text-transform: uppercase; font-size: .7rem; color: var(--ember); }
+.crier-ttl { font-family: 'Pirata One', serif; font-size: clamp(1.6rem, 4.5vw, 2.1rem); line-height: 1.08; color: var(--gold); margin-top: .3rem; text-shadow: 0 0 22px rgba(255,154,60,.3); }
+.crier-lead { margin-top: .9rem; color: #cdbf9e; font-size: 1.05rem; line-height: 1.6; max-width: 62ch; }
+.crier-feat:hover { border-color: var(--gold); background: rgba(60,38,10,.5); box-shadow: 0 20px 54px rgba(0,0,0,.6), 0 0 46px rgba(255,154,60,.18); }
+.crier-feat:hover .crier-ttl { text-shadow: 0 0 28px rgba(255,154,60,.55); }
+
+.crier-more { position: relative; margin-top: 1.2rem; overflow: hidden;
+  background: var(--rubric); border-block: 2px solid var(--gold); box-shadow: 0 0 30px rgba(194,31,31,.4); }
+.crier-label {
+  position: absolute; left: 0; top: 0; bottom: 0; z-index: 2;
+  display: flex; align-items: center; padding: 0 1rem;
+  background: #0c0803; border-right: 2px solid var(--gold);
+  font-family: 'Pirata One', serif; letter-spacing: .2em; color: var(--gold);
+  font-size: .78rem; text-transform: uppercase; white-space: nowrap;
+}
+.crier-label::before { content: "\2720 "; }
+.crier-track {
+  display: flex; width: max-content; gap: 3rem; white-space: nowrap;
+  padding: .6rem 0 .6rem 7rem; animation: crawl 24s linear infinite;
+}
+.crier-more:hover .crier-track { animation-play-state: paused; }
+.crier-track a { color: #f3e6c0; font-family: 'Pirata One', serif; letter-spacing: .1em; text-decoration: none; font-size: .92rem; }
+.crier-track a .s { color: #0c0803; background: var(--gold); padding: .05rem .5rem; margin-right: .6rem; font-size: .68rem; letter-spacing: .15em; }
+.crier-track a:hover { text-shadow: 0 0 12px rgba(255,255,255,.6); }
+@keyframes crawl { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ===================================================================
    Content pages (Rhetoric / Eros) — same codex atmosphere, quieter.
    =================================================================== */
 .masthead { border-bottom: 1px solid rgba(230,194,92,.25); }
@@ -346,5 +403,7 @@ body::after {
   .ember,
   .rays,
   .frame img,
+  .crier-track,
   .tv::before { animation: none; }
+  html.home { scroll-snap-type: none; scroll-behavior: auto; }
 }

@@ -6,6 +6,12 @@ languageCode = "en-us"
 title = "MAXIMAULISM"
 enableEmoji = true
 
+# Pieces carry no explicit `date:` yet, so the Town Crier's "latest" order would
+# be undefined. Fall back to each file's modification time when no date is set;
+# add `date:` to a piece's front matter to pin its order deliberately.
+[frontmatter]
+  date = [":default", ":fileModTime"]
+
 # Curly quotes / em-dashes / accents in the content are authored literally and
 # must survive verbatim — do NOT let Goldmark "smart-punctuate" straight quotes,
 # and keep the author's own punctuation exactly as written.

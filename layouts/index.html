@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main class="relative flex flex-col items-center text-center px-6 pt-10 pb-16 min-h-screen">
+<main class="snap-screen relative flex flex-col items-center text-center px-6 pt-10 pb-16 min-h-screen">
   <h1 class="title blackletter">MAXIMAULISM</h1>
   <div class="rule w-2/3 my-3"></div>
   <p class="slogan text-2xl md:text-4xl">&ldquo;Life is sweetest near the bone&rdquo;</p>
@@ -19,7 +19,37 @@
   </nav>
   <p class="mt-4 text-xs tracking-[.3em] uppercase opacity-55">Essays &middot; Poems &middot; Fiction</p>
 </main>
+
+{{/* TOWN CRIER — a second scroll-screen listing the latest pieces. The newest
+     gets a featured panel with a lead excerpt; the rest crawl in a broadcast
+     ticker. "Latest" is site.RegularPages by date (see the frontmatter date
+     fallback in hugo.toml). Verse <br>s become " / " so poem leads read cleanly. */}}
+{{ with site.RegularPages.ByDate.Reverse }}
+  {{ $featured := index . 0 }}
+  {{ $rest := after 1 . }}
+  <section class="snap-screen crier flex items-center px-6 py-16">
+    <div class="crier-inner">
+      <h2 class="crier-title blackletter">Town Crier</h2>
+
+      <a class="crier-feat" href="{{ $featured.RelPermalink }}">
+        <div class="crier-kick">Latest Dispatch &middot; {{ $featured.Section | title }}</div>
+        <div class="crier-ttl">{{ $featured.Title }}</div>
+        <p class="crier-lead">{{ $featured.Summary | replaceRE `(?i)<br\s*/?>` " / " | plainify | truncate 240 "…" }}</p>
+      </a>
+
+      {{ with $rest }}
+      <div class="crier-more">
+        <div class="crier-label">More</div>
+        <div class="crier-track">
+          {{/* rendered twice so the -50% crawl loops seamlessly */}}
+          {{ range seq 2 }}{{ range $rest }}<a href="{{ .RelPermalink }}"><span class="s">{{ .Section | upper }}</span>{{ .Title }} &mdash; &ldquo;{{ .Summary | replaceRE `(?i)<br\s*/?>` " / " | plainify | truncate 42 "…" }}&rdquo;</a>{{ end }}{{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
 {{ end }}
 
-{{/* Home has no footer — the hero fills the screen. */}}
+{{/* Home has no footer — the hero and Town Crier fill their screens. */}}
 {{ define "footer" }}{{ end }}
