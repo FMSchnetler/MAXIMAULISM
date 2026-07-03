@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--
+  MAXIMAULISM — "LATEST PIECES" FEATURE, LOOK OPTIONS (v2, with leads)
+  Four candidate treatments for a "latest pieces" block under the hero menu.
+  This revision incorporates a real LEAD excerpt from each piece — the essay's
+  opening prose, the poems' opening verse — so each option is shown with the
+  text it would actually carry. All share the locked Candlelit Codex tokens.
+  Vocabulary: pieces are Rhetoric / Eros / Fables, never "articles".
+  Scroll to compare A → D.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAXIMAULISM — Latest Pieces / Look Options</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Pirata+One&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{ --gold:#e6c25c; --gold-dp:#b8860b; --rubric:#c21f1f; --ember:#ff9a3c; --electric:#ffe9b0; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; min-height:100vh; overflow-x:hidden; color:#f0e4c8;
+    font-family:'EB Garamond',Georgia,serif;
+    background:#0c0803;
+    background-image:
+      radial-gradient(circle at 50% 40%, rgba(255,154,60,.16), transparent 55%),
+      radial-gradient(circle at 50% 0%, rgba(230,194,92,.12), transparent 45%);
+    background-attachment:fixed; }
+  body::after{ content:""; position:fixed; inset:0; z-index:50; pointer-events:none; opacity:.3;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.4) 0 1px, transparent 1px 3px); mix-blend-mode:multiply; }
+
+  .blackletter{ font-family:'UnifrakturCook',serif; }
+  .rule{ height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .clamp2{ display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .clamp3{ display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+
+  /* section scaffold for the comparison page (not part of the feature) */
+  .opt-band{ border-top:1px dashed rgba(230,194,92,.25); }
+  .opt-tag{ font-family:'Pirata One',serif; letter-spacing:.25em; color:var(--gold);
+    font-size:.72rem; text-transform:uppercase; opacity:.75; }
+  .opt-name{ font-family:'UnifrakturCook',serif; color:var(--gold); font-size:1.9rem; line-height:1;
+    text-shadow:0 0 24px rgba(255,154,60,.35); }
+  .opt-note{ color:#cdbf9e; font-style:italic; font-size:.95rem; }
+
+  .heading{ font-family:'Pirata One',serif; color:var(--gold); letter-spacing:.18em;
+    text-shadow:0 0 18px rgba(255,154,60,.35); }
+  .sec-Rhetoric{ --sec:#e6c25c; }
+  .sec-Eros{ --sec:#ff9a3c; }
+  .sec-Fables{ --sec:#c21f1f; }
+
+  /* shared lead styling — prose vs verse */
+  .lead-prose{ color:#cdbf9e; font-size:.98rem; line-height:1.55; }
+  .lead-verse{ color:#d9c48f; font-style:italic; font-size:1rem; line-height:1.5;
+    border-left:2px solid rgba(230,194,92,.4); padding-left:.85rem; }
+
+  /* ============================================================= *
+   * OPTION A — RELIQUARY CARDS                                    *
+   * ============================================================= */
+  .A-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; align-items:start; }
+  @media (max-width:760px){ .A-grid{ grid-template-columns:1fr; } }
+  .A-card{ position:relative; display:block; padding:1.1rem 1.15rem 1.25rem;
+    border:1px solid rgba(230,194,92,.32); border-top:none;
+    border-radius:0 0 6px 6px; background:rgba(40,26,8,.4);
+    box-shadow:0 14px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,220,150,.08); transition:.2s; }
+  .A-card::before{ content:""; position:absolute; left:-1px; right:-1px; top:-14px; height:14px;
+    border-radius:60px 60px 0 0; background:linear-gradient(150deg,#f3d98a,var(--gold) 45%,#7a5a10 85%);
+    box-shadow:0 0 0 1px #000; }
+  .A-card::after{ content:"\2720"; position:absolute; top:-11px; left:50%; transform:translateX(-50%);
+    color:#3a2c08; font-size:.7rem; }
+  .A-card .kick{ font-family:'Pirata One',serif; letter-spacing:.2em; text-transform:uppercase;
+    font-size:.68rem; color:var(--sec); }
+  .A-card .ttl{ font-family:'Pirata One',serif; font-size:1.28rem; line-height:1.12; color:#f0e4c8; margin-top:.4rem; }
+  .A-card .lead-prose, .A-card .lead-verse{ margin-top:.7rem; }
+  .A-card .meta{ margin-top:.85rem; font-size:.72rem; letter-spacing:.15em; text-transform:uppercase; color:#9d8a63; }
+  .A-card:hover{ background:rgba(60,38,10,.55); border-color:var(--gold);
+    box-shadow:0 18px 50px rgba(0,0,0,.6), 0 0 40px rgba(255,154,60,.2); transform:translateY(-3px); }
+  .A-card:hover .ttl{ color:var(--gold); }
+
+  /* ============================================================= *
+   * OPTION B — CODEX LEDGER                                       *
+   * ============================================================= */
+  .B-list{ border-top:1px solid rgba(230,194,92,.25); }
+  .B-row{ display:block; padding:1.1rem .4rem; border-bottom:1px solid rgba(230,194,92,.2);
+    transition:.2s; text-decoration:none; }
+  .B-row .top{ display:flex; align-items:baseline; gap:1.1rem; }
+  .B-row .tag{ flex:0 0 auto; width:6.5rem; font-family:'Pirata One',serif; letter-spacing:.18em;
+    text-transform:uppercase; font-size:.78rem; color:var(--sec); }
+  .B-row .ttl{ flex:1; font-family:'EB Garamond',serif; font-size:1.35rem; color:#f0e4c8; }
+  .B-row .when{ flex:0 0 auto; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:#9d8a63; }
+  .B-row .lead-prose, .B-row .lead-verse{ margin-top:.5rem; margin-left:7.6rem; max-width:46ch; }
+  @media (max-width:640px){ .B-row .lead-prose, .B-row .lead-verse{ margin-left:0; } }
+  .B-row:hover{ background:rgba(40,26,8,.4); }
+  .B-row:hover .ttl{ color:var(--gold); }
+
+  /* ============================================================= *
+   * OPTION C — ILLUMINATED INDEX                                  *
+   * ============================================================= */
+  .C-item{ display:flex; gap:1.2rem; align-items:flex-start; padding:1.15rem 0; text-decoration:none; transition:.2s; }
+  .C-item .num{ font-family:'UnifrakturCook',serif; font-size:3rem; line-height:.8; color:var(--rubric);
+    text-shadow:0 0 18px rgba(194,31,31,.4); flex:0 0 auto; width:2.6rem; text-align:center; }
+  .C-item .body{ border-left:1px solid rgba(230,194,92,.3); padding-left:1.2rem; }
+  .C-item .kick{ font-family:'Pirata One',serif; letter-spacing:.2em; text-transform:uppercase;
+    font-size:.68rem; color:var(--sec); }
+  .C-item .ttl{ font-family:'Pirata One',serif; font-size:1.5rem; line-height:1.1; color:#f0e4c8; margin-top:.15rem; }
+  .C-item .lead-prose, .C-item .lead-verse{ margin-top:.55rem; max-width:52ch; }
+  .C-item .meta{ margin-top:.6rem; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:#9d8a63; }
+  .C-item:hover .ttl{ color:var(--gold); }
+  .C-item:hover .num{ color:var(--gold); text-shadow:0 0 22px rgba(255,154,60,.5); }
+
+  /* ============================================================= *
+   * OPTION D — FEATURED + TICKER                                  *
+   * The newest piece gets a hero-lead panel; older pieces scroll  *
+   * beneath in the emergency-broadcast crawl.                     *
+   * ============================================================= */
+  .D-feat{ position:relative; border:1px solid rgba(230,194,92,.32); background:rgba(40,26,8,.42);
+    padding:1.5rem 1.6rem; border-radius:6px; box-shadow:0 16px 44px rgba(0,0,0,.5); overflow:hidden; }
+  .D-feat::before{ content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--rubric); }
+  .D-feat .kick{ font-family:'Pirata One',serif; letter-spacing:.2em; text-transform:uppercase;
+    font-size:.7rem; color:var(--ember); }
+  .D-feat .ttl{ font-family:'Pirata One',serif; font-size:1.9rem; line-height:1.08; color:var(--gold);
+    margin-top:.3rem; text-shadow:0 0 22px rgba(255,154,60,.3); }
+  .D-feat .lead-prose{ margin-top:.85rem; font-size:1.05rem; max-width:60ch; }
+  .D-band{ margin-top:1.1rem; background:var(--rubric); border-block:2px solid var(--gold); overflow:hidden;
+    position:relative; box-shadow:0 0 30px rgba(194,31,31,.4); }
+  .D-band .label{ position:absolute; left:0; top:0; bottom:0; z-index:2; display:flex; align-items:center;
+    padding:0 1rem; background:#0c0803; border-right:2px solid var(--gold);
+    font-family:'Pirata One',serif; letter-spacing:.2em; color:var(--gold); font-size:.8rem; text-transform:uppercase; }
+  .D-track{ display:flex; gap:3rem; white-space:nowrap; padding:.6rem 0 .6rem 8rem;
+    animation:crawl 24s linear infinite; }
+  .D-track a{ color:#f3e6c0; font-family:'Pirata One',serif; letter-spacing:.1em; text-decoration:none; font-size:.92rem; }
+  .D-track a .s{ color:#0c0803; background:var(--gold); padding:.05rem .5rem; margin-right:.6rem;
+    font-size:.68rem; letter-spacing:.15em; }
+  .D-track a:hover{ text-shadow:0 0 12px rgba(255,255,255,.6); }
+  @keyframes crawl{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+</style>
+</head>
+<body>
+
+<!-- fake hero cap so each option is seen "under the menu" in context -->
+<header class="text-center pt-10 pb-6 px-6">
+  <div class="blackletter" style="font-size:clamp(2rem,7vw,4rem);color:var(--gold);text-shadow:0 0 40px rgba(255,154,60,.5),1px 1px 0 #3a2c08;line-height:.9;">MAXIMAULISM</div>
+  <div class="rule w-1/2 mx-auto my-3"></div>
+  <nav class="mt-4 flex gap-6 justify-center" style="font-family:'Pirata One',serif;color:var(--gold);letter-spacing:.15em;">
+    <a href="#" style="color:var(--gold);text-decoration:none;">Rhetoric</a>
+    <a href="#" style="color:var(--gold);text-decoration:none;">Eros</a>
+    <a href="#" style="color:var(--gold);text-decoration:none;">Fables</a>
+  </nav>
+  <p class="mt-3 text-xs tracking-[.3em] uppercase opacity-50">Four looks for “Latest Pieces” — now with lead excerpts · scroll to compare</p>
+</header>
+
+<!-- ============ OPTION A ============ -->
+<section class="opt-band px-6 py-12 max-w-4xl mx-auto">
+  <div class="flex items-end justify-between mb-1">
+    <div>
+      <div class="opt-tag">Option A</div>
+      <div class="opt-name">Reliquary Cards</div>
+    </div>
+    <div class="opt-note max-w-xs text-right">Framed arched panels, each carrying a two-line lead. The true “feature” block.</div>
+  </div>
+  <div class="mt-8">
+    <div class="flex items-center gap-4 mb-6">
+      <span class="heading text-sm uppercase">✝ Freshly Struck</span>
+      <div class="rule flex-1 opacity-60"></div>
+    </div>
+    <div class="A-grid">
+      <a class="A-card sec-Rhetoric" href="#">
+        <div class="kick">Rhetoric</div>
+        <div class="ttl">How to be Alive, or Not Kill Yourself</div>
+        <p class="lead-prose clamp3">Intuition. How hideously has the truth of it been bastardised to ‘instinct’ and animalism — Intuition is the warmth of a man, that which paints the rays of a sun.</p>
+        <div class="meta">Essay · Latest</div>
+      </a>
+      <a class="A-card sec-Eros" href="#">
+        <div class="kick">Eros</div>
+        <div class="ttl">Machinations</div>
+        <p class="lead-verse clamp3">Grinding gears turn,<br>The machinations of a man.<br>Revolutions per minute…</p>
+        <div class="meta">Poem</div>
+      </a>
+      <a class="A-card sec-Eros" href="#">
+        <div class="kick">Eros</div>
+        <div class="ttl">A Forest Birch</div>
+        <p class="lead-verse clamp3">On the way to his wooden home,<br>From his church of wood,<br>Where he stared at the wooden cross…</p>
+        <div class="meta">Poem</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPTION B ============ -->
+<section class="opt-band px-6 py-12 max-w-4xl mx-auto">
+  <div class="flex items-end justify-between mb-1">
+    <div>
+      <div class="opt-tag">Option B</div>
+      <div class="opt-name">Codex Ledger</div>
+    </div>
+    <div class="opt-note max-w-xs text-right">Hairline list; each row drops a one-line lead beneath the title. Understated.</div>
+  </div>
+  <div class="mt-8">
+    <div class="flex items-center gap-4 mb-2">
+      <span class="heading text-sm uppercase">Latest Leaves</span>
+      <div class="rule flex-1 opacity-60"></div>
+    </div>
+    <div class="B-list">
+      <a class="B-row sec-Rhetoric" href="#">
+        <div class="top"><span class="tag">Rhetoric</span><span class="ttl">How to be Alive, or Not Kill Yourself</span><span class="when">MMXXVI</span></div>
+        <p class="lead-prose clamp2">Intuition. How hideously has the truth of it been bastardised to ‘instinct’ and animalism — Intuition is the warmth of a man.</p>
+      </a>
+      <a class="B-row sec-Eros" href="#">
+        <div class="top"><span class="tag">Eros</span><span class="ttl">Machinations</span><span class="when">MMXXVI</span></div>
+        <p class="lead-verse clamp2">Grinding gears turn, / The machinations of a man. / Revolutions per minute…</p>
+      </a>
+      <a class="B-row sec-Eros" href="#">
+        <div class="top"><span class="tag">Eros</span><span class="ttl">A Forest Birch</span><span class="when">MMXXVI</span></div>
+        <p class="lead-verse clamp2">On the way to his wooden home, / From his church of wood…</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPTION C ============ -->
+<section class="opt-band px-6 py-12 max-w-4xl mx-auto">
+  <div class="flex items-end justify-between mb-1">
+    <div>
+      <div class="opt-tag">Option C</div>
+      <div class="opt-name">Illuminated Index</div>
+    </div>
+    <div class="opt-note max-w-xs text-right">Rubricated numerals with a fuller lead — reads like the opening of each leaf.</div>
+  </div>
+  <div class="mt-8 max-w-2xl">
+    <div class="flex items-center gap-4 mb-4">
+      <span class="heading text-sm uppercase">The Newest Leaves</span>
+      <div class="rule flex-1 opacity-60"></div>
+    </div>
+    <a class="C-item sec-Rhetoric" href="#">
+      <div class="num">I</div>
+      <div class="body">
+        <div class="kick">Rhetoric</div>
+        <div class="ttl">How to be Alive, or Not Kill Yourself</div>
+        <p class="lead-prose clamp3">Intuition. How hideously has the truth of it been bastardised to ‘instinct’ and animalism, a mechanism of ‘evolution’, cold, cruel and calculating. Intuition is the warmth of a man, that which paints the rays of a sun.</p>
+        <div class="meta">Essay · Anno Domini MMXXVI</div>
+      </div>
+    </a>
+    <a class="C-item sec-Eros" href="#">
+      <div class="num">II</div>
+      <div class="body">
+        <div class="kick">Eros</div>
+        <div class="ttl">Machinations</div>
+        <p class="lead-verse">Grinding gears turn,<br>The machinations of a man.<br>Revolutions per minute,<br>How many devils churned?</p>
+        <div class="meta">Poem · Anno Domini MMXXVI</div>
+      </div>
+    </a>
+    <a class="C-item sec-Eros" href="#">
+      <div class="num">III</div>
+      <div class="body">
+        <div class="kick">Eros</div>
+        <div class="ttl">A Forest Birch</div>
+        <p class="lead-verse">On the way to his wooden home,<br>From his church of wood,<br>Where he stared at the wooden cross;<br>Sculpted and embossed.</p>
+        <div class="meta">Poem · Anno Domini MMXXVI</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ OPTION D ============ -->
+<section class="opt-band px-6 py-12 max-w-4xl mx-auto">
+  <div class="flex items-end justify-between mb-6">
+    <div>
+      <div class="opt-tag">Option D</div>
+      <div class="opt-name">Featured + Ticker</div>
+    </div>
+    <div class="opt-note max-w-xs text-right">Newest piece gets a lead panel; the rest crawl beneath in the broadcast strip.</div>
+  </div>
+  <div class="D-feat">
+    <div class="kick">✝ Latest Dispatch · Rhetoric</div>
+    <div class="ttl">How to be Alive, or Not Kill Yourself</div>
+    <p class="lead-prose">Intuition. How hideously has the truth of it been bastardised to ‘instinct’ and animalism, a mechanism of ‘evolution’, cold, cruel and calculating. Intuition is the warmth of a man, that which paints the rays of a sun, photons beamed from outer space, into yellows, oranges, dandelion and chrysanthemum.</p>
+  </div>
+  <div class="D-band">
+    <div class="label">✝ More</div>
+    <div class="D-track">
+      <a href="#"><span class="s">EROS</span>Machinations — “The machinations of a man…”</a>
+      <a href="#"><span class="s">EROS</span>A Forest Birch — “On the way to his wooden home…”</a>
+      <a href="#"><span class="s">EROS</span>Machinations — “The machinations of a man…”</a>
+      <a href="#"><span class="s">EROS</span>A Forest Birch — “On the way to his wooden home…”</a>
+    </div>
+  </div>
+</section>
+
+<footer class="text-center py-10 text-[.7rem] tracking-[.4em] opacity-50">MAXIMAULISM — LATEST PIECES / LOOK OPTIONS (v2 · leads)</footer>
+</body>
+</html>
